@@ -1,0 +1,605 @@
+{
+	"info": {
+		"_postman_id": "5d1946b3-69c6-455b-aef3-cae723fc2049",
+		"name": "Introdução ao Elasticseasrch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cluster health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9200/_cluster/health\n",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_cluster",
+						"health\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search all nodes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9200/_cat/nodes?v=\n",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_cat",
+						"nodes"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": "\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search all indices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9200/_cat/indices?v=",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_cat",
+						"indices"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create index",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"settings\": {\n        \"index\": {\n            \"number_of_shards\": 1,\n            \"number_of_replicas\": 2\n        }\n    },\n    \"mappings\": {\n        \"_doc\": {\n            \"properties\": {\n                \"nome_fundo\": {\n                    \"type\": \"text\"\n                },\n                \"risco\": {\n                    \"type\": \"text\"\n                },\n                \"tipo\": {\n                    \"type\": \"text\"\n                },\n                \"rentabilidade\": {\n                    \"type\": \"double\"\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create document 1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_fundo\": \"CONCRETE SOLUTIONS AÇÕES TECNOLOGIA\",\n    \"risco\": \"Muito Alto\",\n    \"tipo\": \"Ações\",\n    \"rentabilidade\": 35.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_doc/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_doc",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create document 2",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_fundo\": \"CONCRETE SOLUTIONS DI\",\n    \"risco\": \"baixo\",\n    \"tipo\": \"renda fixa\",\n    \"rentabilidade\": 7.8\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_doc/2",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_doc",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create document 3",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_fundo\": \"ITAU ACOES\",\n    \"risco\": \"alto\",\n    \"tipo\": \"ações\",\n    \"rentabilidade\": 20.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_doc/3",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_doc",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create document 4",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome_fundo\": \"Concrete Solutions Multimercados\",\n    \"risco\": \"medio\",\n    \"tipo\": \"renda fixa\",\n    \"rentabilidade\": 20.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_doc/4",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_doc",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"doc\": {\n        \"risco\": \"Muito Alto\"\n    },\n    \"upsert\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_doc/1/_update",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_doc",
+						"1",
+						"_update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete document",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:9200/fundos/_doc/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_doc",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_search match all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\": {\n\t\t\"match_all\": {\n\t\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_search match",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\": {\n\t\t\"match\": {\n\t\t\t\"nome_fundo\": \"itau\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_search multi match query",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"multi_match\": {\n            \"query\": \"concrete renda fixa\",\n            \"fields\": [\n                \"nome_fundo\",\n                \"tipo\"\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_search bool query 'AND'",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must\": [\n                {\n                    \"match\": {\n                        \"nome_fundo\": \"concrete\"\n                    }\n                },\n               \n                {\n                    \"match\": {\n                        \"tipo\": \"ações\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_search bool query !=",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must_not\": [\n                {\n                    \"match\": {\n                        \"tipo\": \"renda fixa\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_search bool query 'OR'",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"should\": [\n                {\n                    \"match\": {\n                        \"nome_fundo\": \"concrete\"\n                    }\n                },\n                \n                {\n                    \"match\": {\n                        \"tipo\": \"Ações\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_sort by field",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sort\": [\n        {\n            \"rentabilidade\": {\n                \"order\": \"desc\"\n            }\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/fundos/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete index",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:9200/fundos",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"fundos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
